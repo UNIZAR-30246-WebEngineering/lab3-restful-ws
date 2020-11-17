@@ -316,6 +316,8 @@ public class AddressBookServiceTest {
     // Verify that the user has been deleted
     response = client.target("http://localhost:8282/contacts/person/2")
       .request().delete();
+    //IS THIS THE BUG?
+    //I think that for delete to be idempotent, here it should return code 204 again, and not 404
     assertEquals(404, response.getStatus());
 
     //////////////////////////////////////////////////////////////////////
